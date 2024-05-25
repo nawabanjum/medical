@@ -1,0 +1,64 @@
+﻿├── FiapHackaton
+│   ├── Application
+│   │   ├── Interfaces
+│   │   │   ├── IPatientService.cs
+│   │   │   ├── IDoctorService.cs
+│   │   │   ├── IAppointmentService.cs
+│   │   │   └── INotificationService.cs
+│   │   ├── PatientService.cs
+│   │   ├── DoctorService.cs
+│   │   ├── AppointmentService.cs
+│   │   └── NotificationService.cs
+│   ├── Domain
+│   │   ├── Entities
+│   │   │   ├── Patient.cs
+│   │   │   ├── Doctor.cs
+│   │   │   └── Appointment.cs
+│   │   ├── Interfaces
+│   │   │   ├── IPatientRepository.cs
+│   │   │   ├── IDoctorRepository.cs
+│   │   │   └── IAppointmentRepository.cs
+│   │   └── Shared
+│   │       ├── Enums.cs
+│   │       └── Exceptions.cs
+│   ├── Infrastructure
+│   │   ├── Data
+│   │   │   ├── Context
+│   │   │   │   └── ApplicationDbContext.cs
+│   │   │   ├── Repositories
+│   │   │   │   ├── PatientRepository.cs
+│   │   │   │   ├── DoctorRepository.cs
+│   │   │   │   └── AppointmentRepository.cs
+│   │   │   └── Migrations
+│   │   ├── Services
+│   │   │   └── Notification
+│   │   │       └── EmailNotificationService.cs
+│   │   └── Tests
+│   │       └── Unit
+│   │           ├── Application
+│   │           │   ├── PatientServiceTests.cs
+│   │           │   ├── DoctorServiceTests.cs
+│   │           │   ├── AppointmentServiceTests.cs
+│   │           │   └── NotificationServiceTests.cs
+│   │           └── Infrastructure
+│   │               ├── Data
+│   │               │   ├── PatientRepositoryTests.cs
+│   │               │   ├── DoctorRepositoryTests.cs
+│   │               │   └── AppointmentRepositoryTests.cs
+│   │               └── Services
+│   │                   └── Notification
+│   │                       └── EmailNotificationServiceTests.cs
+│   └── Web
+│       ├── Controllers
+│       │   ├── PatientController.cs
+│       │   ├── DoctorController.cs
+│       │   └── AppointmentController.cs
+│       ├── Models
+│       │   ├── PatientModel.cs
+│       │   ├── DoctorModel.cs
+│       │   └── AppointmentModel.cs
+│       └── Startup.cs
+├── tests
+│   └── end-to-end
+│       └── ...
+└── docker-compose.yml
