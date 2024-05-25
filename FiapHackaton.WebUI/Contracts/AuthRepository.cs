@@ -1,6 +1,6 @@
 ﻿using FiapHackaton.WebUI.Contracts.Interface;
 using FiapHackaton.WebUI.DTO;
-using FiapHackaton.WebUI.Model;
+using FiapHackaton.WebUI.Models;
 using FiapHackaton.WebUI.Static;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;

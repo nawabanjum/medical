@@ -8,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 builder.Services.AddHttpClient();
+builder.Services.AddHttpClient("LocalApi", client => client.BaseAddress = new Uri("https://localhost:7289/"));
 builder.Services.AddSingleton<IAuthRepository, AuthRepository>();
 var app = builder.Build();
 

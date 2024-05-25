@@ -1,4 +1,5 @@
-﻿using FiapHackaton.Application.Interfaces;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using FiapHackaton.Application.Interfaces;
 using FiapHackaton.Domain.Entities;
 using FiapHackaton.Domain.Interfaces;
 using FiapHackaton.Web.Models;
@@ -25,6 +26,10 @@ namespace FiapHackaton.Application
 
 		public async Task RegisterAsync(RegisterModel model)
 		{
+			try
+			{
+
+			
 			var obj = new UserProfile{
 				CreatedAt = DateTime.UtcNow,
 				Description = string.Empty,
@@ -33,10 +38,17 @@ namespace FiapHackaton.Application
 				LastName = model.LastName,
 				Password = model.Password,
 				PhoneNumber = string.Empty,
-				UserTypeId = model.UserTypeId
+				UserTypeId = model.UserTypeId,
+				UpdatedAt= DateTime.UtcNow
 			};
 
 			await _userProfileRepository.AddAsync(obj);
+			}
+			catch (Exception ex)
+			{
+				Console.Write(ex);
+				throw;
+			}
 		}
 
 		public async Task UpdateUserProfileAsync(UserProfile userProfile)

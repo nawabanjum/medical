@@ -2,6 +2,7 @@
 @layout LoginLayout
 @using FiapHackaton.WebUI.Contracts.Interface
 @using FiapHackaton.WebUI.DTO
+@inject IHttpClientFactory ClientFactory
 @inject NavigationManager _navMan
 
 <section class="h-100">
@@ -29,25 +30,25 @@
 						
 							<div class="mb-3">
 								<label class="mb-2 text-muted" for="email">First Name</label>
-								<InputText class="form-control" type="text" @bind-Value="userDto.FirstName" required />
+								<InputText class="form-control" type="text" @bind-Value="userDto!.FirstName" required />
 							</div>
 							<div class="mb-3">
 								<label class="mb-2 text-muted" for="email">Last Name</label>
-								<InputText class="form-control" type="text" @bind-Value="userDto.LastName" required />
+								<InputText class="form-control" type="text" @bind-Value="userDto!.LastName" required />
 							</div>
 							<div class="mb-3">
 								<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-								<InputText class="form-control" type="text" @bind-Value="userDto.Email" required />
+								<InputText class="form-control" type="email" @bind-Value="userDto!.Email" required />
 							</div>
 
 							<div class="mb-2">
 								<label class="mb-2 text-muted" for="password">Password</label>
-								<InputText class="form-control" type="password" @bind-Value="userDto.Password" required/>
+								<InputText class="form-control" type="password" @bind-Value="userDto!.Password" required/>
 							</div>
 
 							<div class="align-items-center d-flex">
 								<button type="submit" class="btn btn-primary ms-auto">
-									Login
+									Register
 								</button>
 							</div>
 						</EditForm>
@@ -68,16 +69,18 @@
 @code {
 	@inject IAuthRepository _authRepo
 
-	private UserDto userDto = new UserDto();
+	[SupplyParameterFromForm]
+	public UserDto? userDto { get; set; }
+	protected override void OnInitialized() => userDto ??= new();
 
 	bool isField = false;
 
 	private async Task HandleRegistration()
 	{
-		userDto.UserTypeId = 2;
-		var response = await _authRepo.Register(userDto);
-
-		if (response)
+		userDto!.UserTypeId = 2;
+		var clientlocal = ClientFactory.CreateClient("LocalApi");
+		var response = await clientlocal.PostAsJsonAsync("api/UserProfile/register", userDto);
+		if (response.IsSuccessStatusCode)
 		{
 			_navMan.NavigateTo("/");
 		}

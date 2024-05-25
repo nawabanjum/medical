@@ -3,6 +3,7 @@
 @using FiapHackaton.WebUI.Contracts.Interface
 @using FiapHackaton.WebUI.DTO
 @inject NavigationManager _navMan
+@inject IHttpClientFactory ClientFactory
 <!DOCTYPE html>
 
 	<section class="h-100">
@@ -31,12 +32,12 @@
 
 							<div class="mb-3 form-group">
 									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-								<InputText class="form-control" type="email" id="Email" @bind-Value="userDto.Email" placeholder="Email" required />
+								<InputText class="form-control" type="email" id="Email" @bind-Value="userDto!.Email" placeholder="Email" required />
 								</div>
 
 							<div class="mb-3 form-group">
 									<label class="mb-2 text-muted" for="password">Password</label>
-								<InputText class="form-control" id="Password" @bind-Value="userDto.Password" placeholder="Password" required />
+								<InputText class="form-control" id="Password" @bind-Value="userDto!.Password" placeholder="Password" required />
 								</div>
 
 								<div class="align-items-center d-flex">
@@ -51,6 +52,7 @@
 						<div class="card-footer py-3 border-0">
 							<div class="text-center">
 							Don't have account? <a href="/registerDoctor" class="text-dark">Create Doctor Account</a>
+<br/>
 							Don't have account? <a href="/registerPatient" class="text-dark">Create Patient Account</a>
 							</div>
 						</div>
@@ -65,12 +67,17 @@
 	@inject IAuthRepository _authRepo
 
 	bool IsFields = false;
-	LoginDTO userDto = new LoginDTO();
+	[SupplyParameterFromForm]
+	public LoginDTO? userDto { get; set; }
+	protected override void OnInitialized() => userDto ??= new();
+
 	protected async Task HandleRegistration()
 	{
-		var response = await _authRepo.Login(userDto);
+		//var response = await _authRepo.Login(userDto);
+		var clientlocal = ClientFactory.CreateClient("LocalApi");
+		var response = await clientlocal.PostAsJsonAsync("api/UserProfile/login", userDto);
 
-		if (response)
+		if (response.IsSuccessStatusCode)
 		{
 
 			_navMan.NavigateTo("/dashboard");

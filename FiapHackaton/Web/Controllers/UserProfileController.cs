@@ -36,7 +36,7 @@ namespace FiapHackaton.Web.Controllers
 
 		[HttpPost]
 		[Route("register")]
-		public async Task<ActionResult> Register(RegisterModel userProfile)
+		public async Task<ActionResult> Register([FromBody] RegisterModel userProfile)
 		{
 			try
 			{
