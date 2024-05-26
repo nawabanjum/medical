@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "C3uAz/xcHFY5XLH71ZN9HjScYoSP8NdHLrfNhq1yE3s=",
+  "Hash": "NR5XZBvaPWmVYGC0rQaWmWOok3iE/2mH9X9S+YGnwuE=",
   "Source": "FiapHackaton.WebUI",
   "BasePath": "_content/FiapHackaton.WebUI",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "FiapHackaton.WebUI\\wwwroot",
       "Source": "FiapHackaton.WebUI",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FiapHackaton.WebUI.styles.css",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FiapHackaton.WebUI.styles.css",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "FiapHackaton.WebUI.styles.css",
       "AssetKind": "All",
@@ -33,13 +33,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FiapHackaton.WebUI.styles.css"
+      "OriginalItemSpec": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FiapHackaton.WebUI.styles.css"
     },
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FiapHackaton.WebUI.bundle.scp.css",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FiapHackaton.WebUI.bundle.scp.css",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Computed",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "FiapHackaton.WebUI.bundle.scp.css",
       "AssetKind": "All",
@@ -52,13 +52,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FiapHackaton.WebUI.bundle.scp.css"
+      "OriginalItemSpec": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FiapHackaton.WebUI.bundle.scp.css"
     },
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\app.css",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\app.css",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "app.css",
       "AssetKind": "All",
@@ -74,10 +74,10 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -93,10 +93,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -112,10 +112,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\favicon.png",
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\favicon.png",
       "SourceId": "FiapHackaton.WebUI",
       "SourceType": "Discovered",
-      "ContentRoot": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
       "BasePath": "_content/FiapHackaton.WebUI",
       "RelativePath": "favicon.png",
       "AssetKind": "All",
@@ -129,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.png"
+    },
+    {
+      "Identity": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\js\\interop.js",
+      "SourceId": "FiapHackaton.WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\wwwroot\\",
+      "BasePath": "_content/FiapHackaton.WebUI",
+      "RelativePath": "js/interop.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\interop.js"
     }
   ]
 }

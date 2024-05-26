@@ -51,5 +51,16 @@ namespace FiapHackaton.Domain.Implementations
 			return await _context.UserProfiles.FirstOrDefaultAsync(a => a.Email == model.Email && a.Password == model.Password);
 
 		}
-	}
+
+        public async Task<IEnumerable<UserProfile>> GetAllDoctorsAsync()
+        {
+
+            return await _context.UserProfiles.Where(a=>a.UserTypeId==1).ToListAsync();
+        }
+
+        public async Task<IEnumerable<UserProfile>> GetAllPatientsAsync()
+        {
+            return await _context.UserProfiles.Where(a => a.UserTypeId == 2).ToListAsync();
+        }
+    }
 }

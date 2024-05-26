@@ -1,20 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj": {}
+    "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj": {}
   },
   "projects": {
-    "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj": {
+    "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj",
+        "projectUniqueName": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj",
         "projectName": "FiapHackaton.WebUI",
-        "projectPath": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj",
-        "packagesPath": "C:\\Users\\nawab\\.nuget\\packages\\",
-        "outputPath": "E:\\MyLocalgit\\medical\\FiapHackaton.WebUI\\obj\\",
+        "projectPath": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\FiapHackaton.WebUI.csproj",
+        "packagesPath": "C:\\Users\\nawab-pc\\.nuget\\packages\\",
+        "outputPath": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebUI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 23.1\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\nawab\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\nawab-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 23.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +28,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Text Control GmbH\\NuGetPackages": {},
+          "C:\\Program Files\\DevExpress 23.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -34,17 +42,16 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Blazored.LocalStorage": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
@@ -69,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.105/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

@@ -63,3 +63,37 @@ E:\MyLocalgit\medical\FiapHackaton.WebUI\obj\Debug\net8.0\scopedcss\projectbundl
 E:\MyLocalgit\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHack.4A08262C.Up2Date
 E:\MyLocalgit\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.genruntimeconfig.cache
 E:\MyLocalgit\medical\FiapHackaton.WebUI\obj\Debug\net8.0\ref\FiapHackaton.WebUI.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\appsettings.Development.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\appsettings.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.staticwebassets.runtime.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.exe
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.deps.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.runtimeconfig.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\FiapHackaton.WebUI.pdb
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\Newtonsoft.Json.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.csproj.AssemblyReference.cache
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.AssemblyInfoInputs.cache
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.AssemblyInfo.cs
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.csproj.CoreCompileInputs.cache
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.MvcApplicationPartsAssemblyInfo.cache
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.sourcelink.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets.build.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets.development.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets\msbuild.FiapHackaton.WebUI.Microsoft.AspNetCore.StaticWebAssets.props
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets\msbuild.build.FiapHackaton.WebUI.props
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.FiapHackaton.WebUI.props
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.FiapHackaton.WebUI.props
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\staticwebassets.pack.json
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\scopedcss\bundle\FiapHackaton.WebUI.styles.css
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\scopedcss\projectbundle\FiapHackaton.WebUI.bundle.scp.css
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.csproj.CopyComplete
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\refint\FiapHackaton.WebUI.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.pdb
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\FiapHackaton.WebUI.genruntimeconfig.cache
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\obj\Debug\net8.0\ref\FiapHackaton.WebUI.dll
+E:\Dev\Medical Assignment\medical\FiapHackaton.WebUI\bin\Debug\net8.0\Blazored.LocalStorage.dll

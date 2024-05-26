@@ -1,0 +1,96 @@
+﻿@page "/updateProfile"
+
+@using FiapHackaton.WebUI.Contracts.Interface
+@using FiapHackaton.WebUI.DTO
+@using FiapHackaton.WebUI.Models
+@using Newtonsoft.Json
+@inject NavigationManager _navMan
+@inject IHttpClientFactory ClientFactory
+<div class="col-xl-9">
+    <!-- Account details card-->
+    <div class="card mb-4">
+        <div class="card-header">Account Details</div>
+        <div class="card-body">
+            <EditForm Model="userDto" OnValidSubmit="HandleRegistration" FormName="loginForm">
+                <!-- Form Group (username)-->
+               
+                <!-- Form Row-->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (first name)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inputFirstName">First name</label>
+                        <InputText class="form-control" type="text" @bind-Value="userDto!.FirstName" required />
+
+                    </div>
+                    <!-- Form Group (last name)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inputLastName">Last name</label>
+                        <InputText class="form-control" type="text" @bind-Value="userDto!.LastName" required />
+
+                    </div>
+                </div>
+                <!-- Form Row        -->
+                <div class="row gx-3 mb-3">
+                    <!-- Form Group (organization name)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inputOrgName">Email</label>
+                        <InputText class="form-control" type="email" @bind-Value="userDto!.Email" required />
+
+                    </div>
+                    <!-- Form Group (location)-->
+                    <div class="col-md-6">
+                        <label class="small mb-1" for="inputOrgName">Phone #</label>
+                        <InputText class="form-control" type="text" @bind-Value="userDto!.PhoneNumber" required />
+
+                    </div>
+                </div>
+                <!-- Form Group (email address)-->
+                <div class="mb-3">
+                    <label class="small mb-1" for="inputOrgName">Description</label>
+                    <InputText class="form-control" rows="4" type="text" @bind-Value="userDto!.Description" required />
+                </div>
+                <!-- Form Row-->
+                
+                <!-- Save changes button-->
+                <button class="btn btn-primary" type="submit">Save changes</button>
+            </EditForm>
+        </div>
+    </div>
+</div>
+@code {
+    @inject IAuthRepository _authRepo
+
+    bool IsFields = false;
+    [SupplyParameterFromForm]
+    public ProfileDto? userDto { get; set; }
+    
+    protected override void OnInitialized() => userDto ??= new();
+    protected override async Task OnInitializedAsync()
+    {
+
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.GetAsync("api/UserProfile/" + 1);
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            userDto = JsonConvert.DeserializeObject<ProfileDto>(content);
+        }
+    }
+    protected async Task HandleRegistration()
+    {
+       
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.PostAsJsonAsync("api/UserProfile/Update", userDto);
+
+        if (response.IsSuccessStatusCode)
+        {
+
+            _navMan.NavigateTo("/dashboard");
+        }
+        else
+        {
+            IsFields = true;
+            _navMan.NavigateTo("/");
+        }
+    }
+}

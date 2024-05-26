@@ -2,93 +2,97 @@
 @layout LoginLayout
 @using FiapHackaton.WebUI.Contracts.Interface
 @using FiapHackaton.WebUI.DTO
+@using FiapHackaton.WebUI.Models
+@using Newtonsoft.Json
+@inject IJSRuntime JSRuntime
 @inject NavigationManager _navMan
 @inject IHttpClientFactory ClientFactory
+@inject ILocalStorageService _localStorage
 <!DOCTYPE html>
 
-	<section class="h-100">
-		<div class="container h-100">
-			<div class="row justify-content-sm-center h-100">
-				<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
-					<div class="text-center my-5">
-					@if (IsFields == true)
-					{
-						<div class="alert" alert-danger>
-							<div class="alert alert-dismissible alert-danger">
-								<h5>
-									<span class="oi oi-circle-x"></span>
-									Something went wrong wih the operation
-								</h5>
-							</div>
+<section class="h-100">
+    <div class="container h-100">
+        <div class="row justify-content-sm-center h-100">
+            <div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+                <div class="text-center my-5">
+                    @if (IsFields == true)
+                    {
+                        <div class="alert" alert-danger>
+                            <div class="alert alert-dismissible alert-danger">
+                                <h5>
+                                    <span class="oi oi-circle-x"></span>
+                                    Something went wrong wih the operation
+                                </h5>
+                            </div>
 
-						</div>
-					}
-					</div>
-					<div class="card shadow-lg">
-						<div class="card-body p-5">
-							<h1 class="fs-4 card-title fw-bold mb-4">Sign In</h1>
-							<EditForm Model="userDto" OnValidSubmit="HandleRegistration" FormName="loginForm" >
+                        </div>
+                    }
+                </div>
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h1 class="fs-4 card-title fw-bold mb-4">Sign In</h1>
+                        <EditForm Model="userDto" OnValidSubmit="HandleRegistration" FormName="loginForm">
 
 
-							<div class="mb-3 form-group">
-									<label class="mb-2 text-muted" for="email">E-Mail Address</label>
-								<InputText class="form-control" type="email" id="Email" @bind-Value="userDto!.Email" placeholder="Email" required />
-								</div>
+                            <div class="mb-3 form-group">
+                                <label class="mb-2 text-muted" for="email">E-Mail Address</label>
+                                <InputText class="form-control" type="email" id="Email" @bind-Value="userDto!.Email" placeholder="Email" required />
+                            </div>
 
-							<div class="mb-3 form-group">
-									<label class="mb-2 text-muted" for="password">Password</label>
-								<InputText class="form-control" id="Password" @bind-Value="userDto!.Password" placeholder="Password" required />
-								</div>
+                            <div class="mb-3 form-group">
+                                <label class="mb-2 text-muted" for="password">Password</label>
+                                <InputText class="form-control" id="Password" @bind-Value="userDto!.Password" placeholder="Password" required />
+                            </div>
 
-								<div class="align-items-center d-flex">
-								<button type="submit" class="btn btn-primary ms-auto">
-									Login
-								</button>
+                            <div class="align-items-center d-flex">
+                                <button type="submit" class="btn btn-primary ms-auto">
+                                    Login
+                                </button>
 
-								</div>
-							</EditForm>
+                            </div>
+                        </EditForm>
 
-						</div>
-						<div class="card-footer py-3 border-0">
-							<div class="text-center">
-							Don't have account? <a href="/registerDoctor" class="text-dark">Create Doctor Account</a>
-<br/>
-							Don't have account? <a href="/registerPatient" class="text-dark">Create Patient Account</a>
-							</div>
-						</div>
-					</div>
-					
-				</div>
-			</div>
-		</div>
-	</section>
+                    </div>
+                    <div class="card-footer py-3 border-0">
+                        <div class="text-center">
+                            Don't have account? <a href="/registerDoctor" class="text-dark">Create Doctor Account</a>
+                            <br />
+                            Don't have account? <a href="/registerPatient" class="text-dark">Create Patient Account</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
 
 @code {
-	@inject IAuthRepository _authRepo
+    @inject IAuthRepository _authRepo
 
-	bool IsFields = false;
-	[SupplyParameterFromForm]
-	public LoginDTO? userDto { get; set; }
-	protected override void OnInitialized() => userDto ??= new();
+    bool IsFields = false;
+    [SupplyParameterFromForm]
+    public LoginDTO? userDto { get; set; }
+    protected override void OnInitialized() => userDto ??= new();
 
-	protected async Task HandleRegistration()
-	{
-		//var response = await _authRepo.Login(userDto);
-		var clientlocal = ClientFactory.CreateClient("LocalApi");
-		var response = await clientlocal.PostAsJsonAsync("api/UserProfile/login", userDto);
+    protected async Task HandleRegistration()
+    {
+        //var response = await _authRepo.Login(userDto);
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.PostAsJsonAsync("api/UserProfile/login", userDto);
 
-		if (response.IsSuccessStatusCode)
-		{
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            var obj = JsonConvert.DeserializeObject<UserProfile>(content);
 
-			_navMan.NavigateTo("/dashboard");
-		}
-		else
-		{
-			IsFields = true;
-			_navMan.NavigateTo("/");
-		
+            _navMan.NavigateTo("/doctors");
 
-
-		}
-	}
+        }
+        else
+        {
+            IsFields = true;
+            _navMan.NavigateTo("/");
+        }
+    }
 }

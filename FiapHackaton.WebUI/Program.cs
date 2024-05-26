@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using FiapHackaton.WebUI.Components;
 using FiapHackaton.WebUI.Contracts;
 using FiapHackaton.WebUI.Contracts.Interface;
@@ -5,11 +6,13 @@ using FiapHackaton.WebUI.Contracts.Interface;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
 builder.Services.AddHttpClient();
 builder.Services.AddHttpClient("LocalApi", client => client.BaseAddress = new Uri("https://localhost:7289/"));
-builder.Services.AddSingleton<IAuthRepository, AuthRepository>();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddBlazoredLocalStorage();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
