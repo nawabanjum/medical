@@ -1,0 +1,59 @@
+﻿@page "/doctors"
+@using FiapHackaton.WebApp.Models
+@using Newtonsoft.Json
+@inject NavigationManager _navMan
+@inject IHttpClientFactory ClientFactory
+@inject NavigationManager NavigationManager
+
+@if (doctors.Any())
+{
+    
+    foreach (var item in doctors)
+    {
+        var days = item.Schedules.Select(a => a.DayOfWeek).Distinct();
+        <div class="card">
+            <div class="card-header">
+              @item.UserName
+            </div>
+            <div class="card-header">
+                <strong> Available Slots</strong>
+            </div>
+            <div class="card-body">
+              
+                <div style="width:100%;display:flex">
+                    
+                @foreach (var day in days)
+                {
+                             <div style="width:15%">
+                            <h5 class="card-title txt-center"><strong> @day</strong></h5>
+                           
+                    @foreach (var itm in item.Schedules.Where(a=>a.DayOfWeek==day))
+                    {
+
+                        
+                                <a href="#" class="btn btn-primary btn-sm m-1">@itm.StartTime -  @itm.EndTime</a>
+                    }
+                    
+                   
+                    </div>
+                }
+                
+            </div>
+            </div>
+        </div>
+     }
+}
+@code {
+    private List<ScheduleModel> doctors = new List<ScheduleModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.GetAsync("api/UserProfile/doctors");
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            doctors = JsonConvert.DeserializeObject<List<ScheduleModel>>(content);
+        }
+    }
+}

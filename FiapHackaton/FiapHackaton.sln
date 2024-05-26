@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapHackaton", "FiapHackato
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapHackaton.WebUI", "..\FiapHackaton.WebUI\FiapHackaton.WebUI.csproj", "{C3DBF048-BB6B-47CE-BD94-206D47186523}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FiapHackaton.WebApp", "..\FiapHackaton.WebApp\FiapHackaton.WebApp.csproj", "{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\FiapHackaton.WebUI.props" />
-</Project>

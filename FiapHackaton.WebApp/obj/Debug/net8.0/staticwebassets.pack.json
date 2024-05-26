@@ -1,0 +1,61 @@
+{
+  "Files": [
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\bin\\Debug\\net8.0\\wwwroot\\_framework\\blazor.webassembly.js",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\obj\\Debug\\net8.0\\compressed\\1h8umtizx5.gz",
+      "PackagePath": "staticwebassets\\_framework\\blazor.webassembly.js.gz"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\obj\\Debug\\net8.0\\scopedcss\\bundle\\FiapHackaton.WebApp.styles.css",
+      "PackagePath": "staticwebassets\\FiapHackaton.WebApp.styles.css"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\css\\app.css",
+      "PackagePath": "staticwebassets\\css\\app.css"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\icon-192.png",
+      "PackagePath": "staticwebassets\\icon-192.png"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "E:\\Dev\\Medical Assignment\\medical\\FiapHackaton.WebApp\\wwwroot\\sample-data\\weather.json",
+      "PackagePath": "staticwebassets\\sample-data\\weather.json"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.FiapHackaton.WebApp.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.FiapHackaton.WebApp.props",
+      "PackagePath": "build\\FiapHackaton.WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.FiapHackaton.WebApp.props",
+      "PackagePath": "buildMultiTargeting\\FiapHackaton.WebApp.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.FiapHackaton.WebApp.props",
+      "PackagePath": "buildTransitive\\FiapHackaton.WebApp.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

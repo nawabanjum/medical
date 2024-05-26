@@ -1,0 +1,145 @@
+﻿@page "/schedule/edit/{Id}"
+
+@using FiapHackaton.WebApp.Models
+@inject NavigationManager _navManager
+
+
+@if (int.Parse(Id) < 1 || string.IsNullOrWhiteSpace(Id))
+{
+    <div class="alert alert-dismissible alert-danger">
+        <h5>
+            <span class="oi oi-circle-x"></span>
+            Invalid Selection. Please Try Again
+        </h5>
+    </div>
+}
+else if (newSchedule == null)
+{
+
+    <div class="alert alert-dismissible alert-danger">
+        <h5>
+            <span class="oi oi-circle-x"></span>
+            Loading Schedule Details
+        </h5>
+    </div>
+}
+else
+{
+    <div class="col-xl-12">
+
+        <div class="card mb-4">
+            <div class="card-header">Add Schedule</div>
+            <div class="card-body">
+                <EditForm Model="@newSchedule" OnValidSubmit="UpdateSchedule" FormName="Schedule">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (first name)-->
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="inputFirstName">Week Day</label>
+                            <select @bind="newSchedule.DayOfWeek" class="form-control" id="DayOfWeek">
+                                <option value="">-- Week Days --</option>
+                                @if (DayList != null)
+                                {
+                                    foreach (var day in DayList)
+                                    {
+                                        <option value="@day">@day</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                      
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="inputLastName">Start Time</label>
+
+                            <select @bind="newSchedule.StartTime" class="form-control" id="StartTime">
+                                <option value="">-- Select Start Time --</option>
+                                @if (TimeList != null)
+                                {
+                                    foreach (var time in TimeList)
+                                    {
+                                        <option value="@time">@time</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="small mb-1" for="inputLastName">End Time</label>
+
+                            <select @bind="newSchedule.EndTime" class="form-control" id="EndTime">
+                                <option value="">-- Select Start Time --</option>
+                                @if (TimeList != null)
+                                {
+                                    foreach (var time in TimeList)
+                                    {
+                                        <option value="@time">@time</option>
+                                    }
+                                }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputOrgName">Description</label>
+                        <InputText class="form-control" rows="4" @bind-Value="newSchedule!.DocComments" required />
+                    </div>
+                    <button class="btn btn-primary" type="submit">Create</button>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+}
+
+@code{
+    [Parameter]
+    public string Id { get; set; }
+    private Schedule newSchedule = new Schedule();
+    protected override void OnInitialized() => newSchedule ??= new();
+
+    private List<string> TimeList { get; set; }
+    private List<string> DayList { get; set; }
+    protected override async Task OnInitializedAsync()
+    {
+        TimeList = GenerateTimeList();
+        DayList = GenerateDayList();
+     int id = Convert.ToInt32(Id);
+    }
+
+
+
+    private async Task UpdateSchedule()
+    {
+       
+    }
+
+   
+
+
+    private void BackToList()
+    {
+        _navManager.NavigateTo("/schedules/");
+    }
+    private List<string> GenerateTimeList()
+    {
+        var timeList = new List<string>();
+
+        for (int i = 0; i < 24; i++)
+        {
+            var hour = i % 12 == 0 ? 12 : i % 12;
+            var period = i < 12 ? "AM" : "PM";
+            var timeString = $"{hour:00}:00 {period}";
+            timeList.Add(timeString);
+        }
+
+        return timeList;
+    }
+    private List<string> GenerateDayList()
+    {
+        var dayList = new List<string>
+        {
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        };
+
+        return dayList;
+    }
+}

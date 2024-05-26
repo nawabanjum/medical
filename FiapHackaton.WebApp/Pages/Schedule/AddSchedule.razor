@@ -1,0 +1,114 @@
+﻿@page "/createschedule"
+@using FiapHackaton.WebApp.Models
+@using Newtonsoft.Json
+@using FiapHackaton.WebApp.Services
+@inject LocalStorageService _localStorage
+@inject NavigationManager _navMan
+@inject IHttpClientFactory ClientFactory
+
+<div class="col-xl-12">
+    <div class="card mb-4">
+        <div class="card-header">Add Schedule</div>
+        <div class="card-body">
+            <EditForm Model="@newSchedule" OnValidSubmit="CreateSchedule" FormName="ScheduleForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <div class="row gx-3 mb-3">
+                    <div class="col-md-4">
+                        <label class="small mb-1" for="DayOfWeek">Week Day</label>
+                        <select @bind="newSchedule.DayOfWeek" class="form-control" id="DayOfWeek">
+                            <option value="">-- Week Days --</option>
+                            @if (DayList != null)
+                            {
+                                @foreach (var day in DayList)
+                                {
+                                    <option value="@day">@day</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="small mb-1" for="StartTime">Start Time</label>
+                        <select @bind="newSchedule.StartTime" class="form-control" id="StartTime">
+                            <option value="">-- Select Start Time --</option>
+                            @if (TimeList != null)
+                            {
+                                @foreach (var time in TimeList)
+                                {
+                                    <option value="@time">@time</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="small mb-1" for="EndTime">End Time</label>
+                        <select @bind="newSchedule.EndTime" class="form-control" id="EndTime">
+                            <option value="">-- Select End Time --</option>
+                            @if (TimeList != null)
+                            {
+                                @foreach (var time in TimeList)
+                                {
+                                    <option value="@time">@time</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="small mb-1" for="DocComments">Description</label>
+                    <InputText class="form-control" @bind-Value="newSchedule.DocComments" />
+                </div>
+                <button class="btn btn-primary" type="submit">Create</button>
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+@code {
+    public Schedule newSchedule { get; set; } = new();
+
+    private List<string> TimeList { get; set; }
+    private List<string> DayList { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        TimeList = GenerateTimeList();
+        DayList = GenerateDayList();
+    }
+
+    private async Task CreateSchedule()
+    {
+        var value = await _localStorage.GetItemAsync("UserId");
+        newSchedule.DoctorID = Convert.ToInt32(value);
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.PostAsJsonAsync("api/Schedule", newSchedule);
+        if (response.IsSuccessStatusCode)
+        {
+            _navMan.NavigateTo("/schedules"); // Redirect to the schedules page
+        }
+
+    }
+
+    private List<string> GenerateTimeList()
+    {
+        var timeList = new List<string>();
+
+        for (int i = 0; i < 24; i++)
+        {
+            var hour = i % 12 == 0 ? 12 : i % 12;
+            var period = i < 12 ? "AM" : "PM";
+            var timeString = $"{hour:00}:00 {period}";
+            timeList.Add(timeString);
+        }
+
+        return timeList;
+    }
+
+    private List<string> GenerateDayList()
+    {
+        return new List<string>
+        {
+            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+        };
+    }
+}

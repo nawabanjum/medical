@@ -1,0 +1,95 @@
+﻿@page "/registerPatient"
+@layout LoginLayout
+@using FiapHackaton.WebApp.Contracts.Interface
+@using FiapHackaton.WebApp.DTO
+@inject IHttpClientFactory ClientFactory
+@inject NavigationManager _navMan
+
+<section class="h-100">
+	<div class="container h-100">
+		<div class="row justify-content-sm-center h-100">
+			<div class="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+				<div class="text-center my-5">
+				</div>
+				<div class="card shadow-lg">
+					@if (isField == true)
+					{
+						<div class="alert" alert-danger>
+							<div class="alert alert-dismissible alert-danger">
+								<h5>
+									<span class="oi oi-circle-x"></span>
+									Something went wrong wih the operation
+								</h5>
+							</div>
+
+						</div>
+					}
+					<div class="card-body p-5">
+						<h1 class="fs-4 card-title fw-bold mb-4">Sign Up(Patient) </h1>
+						<EditForm Model="userDto" OnValidSubmit="HandleRegistration" FormName="loginForm" id="login-form" class="form">
+						
+							<div class="mb-3">
+								<label class="mb-2 text-muted" for="email">First Name</label>
+								<InputText class="form-control" type="text" @bind-Value="userDto!.FirstName" required />
+							</div>
+							<div class="mb-3">
+								<label class="mb-2 text-muted" for="email">Last Name</label>
+								<InputText class="form-control" type="text" @bind-Value="userDto!.LastName" required />
+							</div>
+							<div class="mb-3">
+								<label class="mb-2 text-muted" for="email">E-Mail Address</label>
+								<InputText class="form-control" type="email" @bind-Value="userDto!.Email" required />
+							</div>
+
+							<div class="mb-2">
+								<label class="mb-2 text-muted" for="password">Password</label>
+								<InputText class="form-control" type="password" @bind-Value="userDto!.Password" required/>
+							</div>
+
+							<div class="align-items-center d-flex">
+								<button type="submit" class="btn btn-primary ms-auto">
+									Register
+								</button>
+							</div>
+						</EditForm>
+
+					</div>
+					<div class="card-footer py-3 border-0">
+						<div class="text-center">
+							Already have an account? <a href="/" class="text-dark">Login</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+@code {
+	@inject IAuthRepository _authRepo
+
+	[SupplyParameterFromForm]
+	public UserDto? userDto { get; set; }
+	protected override void OnInitialized() => userDto ??= new();
+
+	bool isField = false;
+
+	private async Task HandleRegistration()
+	{
+		userDto!.UserTypeId = 2;
+		var clientlocal = ClientFactory.CreateClient("LocalApi");
+		var response = await clientlocal.PostAsJsonAsync("api/UserProfile/register", userDto);
+		if (response.IsSuccessStatusCode)
+		{
+			_navMan.NavigateTo("/");
+		}
+		else
+		{
+			_navMan.NavigateTo("/");
+			isField = true;
+
+
+		}
+	}
+}
