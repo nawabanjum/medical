@@ -10,7 +10,8 @@ namespace FiapHackaton.Application.Interfaces
         Task<IEnumerable<UserProfile>> GetAllPatientsAsync();
         Task<UserProfile> GetUserProfileByIdAsync(int id);
         Task<UserProfile> LoginAsync(LoginModel model);
-		Task RegisterAsync(RegisterModel userProfile);
+        Task<UserProfile> GetByEmail(string email);
+        Task RegisterAsync(RegisterModel userProfile);
         Task UpdateUserProfileAsync(UserProfile userProfile);
         Task DeleteUserProfileAsync(int id);
     }

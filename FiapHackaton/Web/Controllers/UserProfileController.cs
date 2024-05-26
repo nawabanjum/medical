@@ -104,5 +104,25 @@ namespace FiapHackaton.Web.Controllers
             await _userProfileService.DeleteUserProfileAsync(id);
             return NoContent();
         }
+
+        [HttpPost]
+        [Route("forgot-password")]
+        public async Task<ActionResult> ForgotPassword(string username)
+        {
+            var userProfile = await _userProfileService.GetByEmail(username);
+            if (userProfile == null)
+            {
+                return NotFound();
+            }
+            return Ok(userProfile);
+        }
+        //[HttpPut]
+        //[Route("resetPassword")]
+        //public async Task<ApiResponse> ResetPassword([FromBody] ResetPasswordModel model)
+        //{
+        //    await _authService.ResetPasswordAsync(model);
+
+        //    return new ApiResponse(ContstantMessages.PasswordResetSuccess);
+        //}
     }
 }

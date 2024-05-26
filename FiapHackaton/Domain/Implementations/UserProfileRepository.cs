@@ -62,5 +62,11 @@ namespace FiapHackaton.Domain.Implementations
         {
             return await _context.UserProfiles.Where(a => a.UserTypeId == 2).ToListAsync();
         }
+       
+
+        public async Task<UserProfile> GetByEmail(string email)
+        {
+            return await _context.UserProfiles.Where(a => a.Email.ToLower() == email.ToLower()).FirstOrDefaultAsync();
+        }
     }
 }

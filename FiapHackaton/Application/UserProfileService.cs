@@ -2,18 +2,22 @@
 using FiapHackaton.Domain.Entities;
 using FiapHackaton.Domain.Interfaces;
 using FiapHackaton.Web.Models;
+using System.Net.Mail;
+using System.Net;
 
 namespace FiapHackaton.Application
 {
     public class UserProfileService : IUserProfileService
     {
         private readonly IUserProfileRepository _userProfileRepository;
-        private readonly IScheduleRepository  _scheduleRepository ;
-        
-        public UserProfileService(IUserProfileRepository userProfileRepository, IScheduleRepository scheduleRepository)
+        private readonly IScheduleRepository _scheduleRepository;
+        private readonly INotificationService _notificationService;
+
+        public UserProfileService(INotificationService notificationService, IUserProfileRepository userProfileRepository, IScheduleRepository scheduleRepository)
         {
             _userProfileRepository = userProfileRepository;
             _scheduleRepository = scheduleRepository;
+            _notificationService = notificationService;
         }
 
         public async Task<IEnumerable<UserProfile>> GetAllUserProfilesAsync()
@@ -103,5 +107,20 @@ namespace FiapHackaton.Application
         {
             return await _userProfileRepository.GetAllPatientsAsync();
         }
+
+        public async Task<UserProfile> GetByEmail(string email)
+        {
+            var obj = new UserProfile();
+            obj = await _userProfileRepository.GetByEmail(email);
+            if (obj != null)
+            {
+                _notificationService.SendPassword(email, $"He {obj.FirstName} Please use the below password to login");
+            }
+            return obj;
+
+
+        }
     }
+
+      
 }

@@ -13,5 +13,7 @@ namespace FiapHackaton.Domain.Interfaces
         Task AddAsync(UserProfile userProfile);
         Task UpdateAsync(UserProfile userProfile);
         Task DeleteAsync(int id);
+
+        Task<UserProfile> GetByEmail(string email);
     }
 }
