@@ -1,0 +1,110 @@
+﻿@page "/myappointments"
+@using FiapHackaton.WebApp.Models
+@using Newtonsoft.Json
+@inject NavigationManager _navMan
+@inject IHttpClientFactory ClientFactory
+@inject NavigationManager NavigationManager
+@using FiapHackaton.WebApp.Services
+
+@inject IHttpClientFactory ClientFactory
+@inject LocalStorageService _localStorage
+
+@using FiapHackaton.WebApp.Contracts.Interface
+@using FiapHackaton.WebApp.DTO
+
+@if (doctors.Any())
+{
+    
+    foreach (var item in doctors)
+    {
+        var days = item.Schedules.Select(a => a.DayOfWeek).Distinct();
+        <div class="card">
+            <div class="card-header">
+              @item.UserName
+            </div>
+            <div class="card-header">
+                <strong> Booked Slots</strong>
+            </div>
+            <div class="card-body">
+              
+                <div style="width:100%;display:flex">
+                    
+                @foreach (var day in days)
+                {
+                             <div style="width:20%">
+                            <h5 class="card-title txt-center"><strong> @day</strong></h5>
+                           
+                    @foreach (var itm in item.Schedules.Where(a=>a.DayOfWeek==day))
+                    {
+
+                                if (UserTypeId==2)
+                                {
+                                    var app = item.AppointmentModel.Where(a => a.ScheduleID == itm.ScheduleID && a.PatientId == UserId && a.Status == "scheduled").FirstOrDefault();
+                                    if (app != null)
+                                    {
+                                        <a title="Cancel appointment" class="btn btn-primary btn-sm m-1" @onclick="() => CancelAppointment(app.AppointmentID)">
+                                        @itm.StartTime -  @itm.EndTime
+
+                                   
+                                            </a>
+                                     }
+                                 }else{
+                                    var app = item.AppointmentModel.Where(a => a.ScheduleID == itm.ScheduleID && a.DoctorId == UserId && a.Status == "scheduled").FirstOrDefault();
+                                    if (app != null)
+                                    {
+                                    <a title="Cancel appointment" class="btn btn-primary btn-sm m-1" @onclick="() => CancelAppointment(app.AppointmentID)">
+                                        @itm.StartTime -  @itm.EndTime
+
+
+                                    </a>
+                                    }
+                                 }
+                                
+                                
+                              
+
+                    }
+                    
+                   
+                    </div>
+                }
+                
+            </div>
+            </div>
+        </div>
+     }
+}
+@code {
+    private List<ScheduleModel> doctors = new List<ScheduleModel>();
+    private int UserId = 0;
+    private int UserTypeId = 2;
+    protected override async Task OnInitializedAsync()
+    {
+        var value = await _localStorage.GetItemAsync("UserId");
+        UserId = Convert.ToInt32(value);
+        var value1 = await _localStorage.GetItemAsync("UserTypeId");
+        UserTypeId = Convert.ToInt32(value1);
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.GetAsync("api/UserProfile/doctors");
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            doctors = JsonConvert.DeserializeObject<List<ScheduleModel>>(content);
+            if (UserTypeId == 1)
+            {
+                doctors = doctors.Where(a => a.UserId == UserId).ToList();
+            }
+        }
+    }
+    private async Task CancelAppointment(int id)
+    {
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var response = await clientlocal.DeleteAsync("api/Appointment/" + id);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            await OnInitializedAsync(); // Refresh the list of schedules after deletion
+        }
+
+    }
+}

@@ -4,6 +4,13 @@
 @inject NavigationManager _navMan
 @inject IHttpClientFactory ClientFactory
 @inject NavigationManager NavigationManager
+@using FiapHackaton.WebApp.Services
+
+@inject IHttpClientFactory ClientFactory
+@inject LocalStorageService _localStorage
+
+@using FiapHackaton.WebApp.Contracts.Interface
+@using FiapHackaton.WebApp.DTO
 
 @if (doctors.Any())
 {
@@ -24,14 +31,28 @@
                     
                 @foreach (var day in days)
                 {
-                             <div style="width:15%">
+                             <div style="width:20%">
                             <h5 class="card-title txt-center"><strong> @day</strong></h5>
                            
                     @foreach (var itm in item.Schedules.Where(a=>a.DayOfWeek==day))
                     {
 
-                        
-                                <a href="#" class="btn btn-primary btn-sm m-1">@itm.StartTime -  @itm.EndTime</a>
+                                var app = item.AppointmentModel.Where(a => a.ScheduleID == itm.ScheduleID && a.Status == "scheduled").FirstOrDefault();
+                                if (app != null)
+                                {
+                                    <a  title="Already booked" class="card-header">
+                                        @itm.StartTime -  @itm.EndTime
+
+
+                                    </a>
+                                }else{
+                                <a  title="book appointment" class="btn btn-primary btn-sm m-1" @onclick="() => BookAppointment(itm.ScheduleID,item.UserId)">
+                                    @itm.StartTime -  @itm.EndTime
+
+                                   
+                                </a>
+                                }
+                           
                     }
                     
                    
@@ -55,5 +76,27 @@
             var content = await response.Content.ReadAsStringAsync();
             doctors = JsonConvert.DeserializeObject<List<ScheduleModel>>(content);
         }
+    }
+    private async Task BookAppointment(int id,int docid)
+    {
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var value = await _localStorage.GetItemAsync("UserId");
+        var userID = Convert.ToInt32(value);
+        AppointmentModel appointmentModel = new AppointmentModel
+        {
+              Comments="Please book my appointment",
+                DoctorId = docid,
+                PatientId = userID,
+               ScheduleID=id,
+                Status = "scheduled",
+               CreatedAt=DateTime.UtcNow
+        };
+        var response = await clientlocal.PostAsJsonAsync("api/Appointment", appointmentModel);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            await OnInitializedAsync(); // Refresh the list of schedules after deletion
+        }
+
     }
 }

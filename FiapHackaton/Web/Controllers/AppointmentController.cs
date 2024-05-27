@@ -1,4 +1,5 @@
-﻿using FiapHackaton.Application.Interfaces;
+﻿using FiapHackaton.Application;
+using FiapHackaton.Application.Interfaces;
 using FiapHackaton.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,15 @@ namespace FiapHackaton.Web.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
-
-        public AppointmentController(IAppointmentService appointmentService)
+        private readonly IScheduleService _scheduleService;
+        private readonly IUserProfileService _userProfileService;
+        private readonly INotificationService _notificationService;
+        public AppointmentController(INotificationService notificationService,IUserProfileService userProfileService, IScheduleService scheduleService,IAppointmentService appointmentService)
         {
             _appointmentService = appointmentService;
+            _scheduleService = scheduleService;
+            _userProfileService = userProfileService;
+            _notificationService = notificationService;
         }
 
         [HttpGet]
@@ -34,16 +40,24 @@ namespace FiapHackaton.Web.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateAppointment(AppointmentModel appointment)
+        public async Task<IActionResult> CreateAppointmentAsync(AppointmentModel appointment)
         {
-            _appointmentService.AddAppointment(appointment);
-            return CreatedAtAction(nameof(GetAppointment), new { id = appointment.Id }, appointment);
+            await _appointmentService.AddAppointmentAsync(appointment);
+            var schedule = await _scheduleService.GetScheduleById(appointment.ScheduleID);
+            var dProfile = await _userProfileService.GetUserProfileByIdAsync(appointment.DoctorId);
+            var Pprofile = await _userProfileService.GetUserProfileByIdAsync(appointment.PatientId);
+            if (schedule != null)
+            {
+                string message = $"Dear Dr {dProfile.FirstName} , you have an appointment for the day {schedule.DayOfWeek} at {schedule.StartTime} to {schedule.EndTime} with Patient {Pprofile.FirstName}";
+                _notificationService.SendAppointment(dProfile.Email, message);
+            }
+            return CreatedAtAction(nameof(GetAppointment), new { id = appointment.AppointmentID }, appointment);
         }
 
         [HttpPut("{id}")]
         public IActionResult UpdateAppointment(int id, AppointmentModel appointment)
         {
-            if (id != appointment.Id)
+            if (id != appointment.AppointmentID)
             {
                 return BadRequest();
             }

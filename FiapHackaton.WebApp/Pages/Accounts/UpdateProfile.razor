@@ -47,10 +47,13 @@
                     </div>
                 </div>
                 <!-- Form Group (email address)-->
-                <div class="mb-3">
-                    <label class="small mb-1" for="inputOrgName">Description</label>
+                @if (UserTypeId == 1)
+                {
+                    <div class="mb-3">
+                        <label class="small mb-1" for="inputOrgName">Speciality/Description</label>
                     <InputText class="form-control" rows="4" type="text" @bind-Value="userDto!.Description" required />
                 </div>
+                }
                 <!-- Form Row-->
                 
                 <!-- Save changes button-->
@@ -65,13 +68,14 @@
     bool IsFields = false;
     [SupplyParameterFromForm]
     public ProfileDto? userDto { get; set; }
-    
+    private int UserTypeId = 2;
     protected override void OnInitialized() => userDto ??= new();
     protected override async Task OnInitializedAsync()
     {
       
      var   value = await _localStorage.GetItemAsync("UserId");
-       
+        var value1 = await _localStorage.GetItemAsync("UserTypeId");
+        UserTypeId = Convert.ToInt32(value1);
         var clientlocal = ClientFactory.CreateClient("LocalApi");
         var response = await clientlocal.GetAsync("api/UserProfile/" + Convert.ToInt32(value));
         if (response.IsSuccessStatusCode)

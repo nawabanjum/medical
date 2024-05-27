@@ -8,9 +8,13 @@ namespace FiapHackaton.Application
     {
         private readonly IAppointmentRepository _appointmentRepository;
 
+
+
         public AppointmentService(IAppointmentRepository appointmentRepository)
         {
             _appointmentRepository = appointmentRepository;
+
+       
         }
 
         public IEnumerable<AppointmentModel> GetAllAppointments()
@@ -23,11 +27,11 @@ namespace FiapHackaton.Application
             return _appointmentRepository.GetAppointmentById(id);
         }
 
-        public void AddAppointment(AppointmentModel appointment)
+        public async Task AddAppointmentAsync(AppointmentModel appointment)
         {
             _appointmentRepository.AddAppointment(appointment);
+           
         }
-
         public void UpdateAppointment(AppointmentModel appointment)
         {
             _appointmentRepository.UpdateAppointment(appointment);
@@ -43,4 +47,6 @@ namespace FiapHackaton.Application
             }
         }
     }
-}
+
+       
+    }

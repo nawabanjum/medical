@@ -1,4 +1,5 @@
 ﻿@page "/"
+@page "/login"
 @layout LoginLayout
 @using FiapHackaton.WebApp.Contracts.Interface
 @using FiapHackaton.WebApp.DTO
@@ -56,7 +57,7 @@
                     </div>
                     <div class="card-footer py-3 border-0">
                         <div class="text-center">
-                            <a href="/forgotPassword" class="text-dark">Forgot Password</a>
+                            <a href="/ForgotPassword" class="text-dark">Forgot Password</a>
                             <br />
                             Don't have account? <a href="/registerDoctor" class="text-dark">Create Doctor Account</a>
                             <br />
@@ -97,7 +98,12 @@
             // JavaScript interop function to set data in localStorage
          
             await _localStorage.SetItemAsync("UserId", obj.UserId.ToString());
+            await _localStorage.SetItemAsync("UserTypeId", obj.UserTypeId.ToString());
+            
             StateHasChanged(); // To update the UI with the new status
+            if (obj.UserTypeId==1)
+                _navMan.NavigateTo("/schedules");
+            else
             _navMan.NavigateTo("/doctors");
 
         }

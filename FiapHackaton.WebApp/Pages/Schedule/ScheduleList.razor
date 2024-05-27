@@ -1,9 +1,10 @@
 ﻿@page "/schedules"
 @using FiapHackaton.WebApp.Models
+@using FiapHackaton.WebApp.Services
 @using Newtonsoft.Json
 @inject NavigationManager _navMan
 @inject IHttpClientFactory ClientFactory
-
+@inject LocalStorageService _localStorage
 <div class="col-xl-12">
 
     <div class="card mb-4">
@@ -29,7 +30,7 @@
                                 <td>@schedule.EndTime</td>
                                 <td>
                                     <button class="btn btn-sm btn-danger" @onclick="() => DeleteSchedule(schedule.ScheduleID)">Delete</button>
-                                    <button class="btn btn-sm btn-success" @onclick="() => EditSchedule(schedule.ScheduleID)">  Edit</button>
+                                   @*  <button class="btn btn-sm btn-success" @onclick="() => EditSchedule(schedule.ScheduleID)">  Edit</button> *@
                                 </td>
                             </tr>
                         }
@@ -55,15 +56,28 @@
     protected override async Task OnInitializedAsync()
     {
         var clientlocal = ClientFactory.CreateClient("LocalApi");
-        var response = await clientlocal.GetAsync("api/Schedule/");
-        var content = await response.Content.ReadAsStringAsync();
-        schedules = JsonConvert.DeserializeObject<List<Schedule>>(content);
-       
+        var value = await _localStorage.GetItemAsync("UserId");
+        var userID = Convert.ToInt32(value);
+        var response = await clientlocal.GetAsync("api/Schedule/user/" + userID);
+        if (response.IsSuccessStatusCode)
+        {
+            var content = await response.Content.ReadAsStringAsync();
+            schedules = JsonConvert.DeserializeObject<List<Schedule>>(content);
+        }
+
     }
 
     private async Task DeleteSchedule(int id)
     {
-        await OnInitializedAsync(); // Refresh the list of schedules after deletion
+        var clientlocal = ClientFactory.CreateClient("LocalApi");
+        var value = await _localStorage.GetItemAsync("UserId");
+        var userID = Convert.ToInt32(value);
+        var response = await clientlocal.DeleteAsync("api/Schedule/" + id);
+        if (response.IsSuccessStatusCode)
+        {
+            await OnInitializedAsync(); // Refresh the list of schedules after deletion
+        }
+       
     }
     private async Task EditSchedule(int id)
     {

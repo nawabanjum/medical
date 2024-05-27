@@ -12,12 +12,13 @@ namespace FiapHackaton.Application
         private readonly IUserProfileRepository _userProfileRepository;
         private readonly IScheduleRepository _scheduleRepository;
         private readonly INotificationService _notificationService;
-
-        public UserProfileService(INotificationService notificationService, IUserProfileRepository userProfileRepository, IScheduleRepository scheduleRepository)
+        private readonly IAppointmentService _appointmentService;
+        public UserProfileService(IAppointmentService appointmentService,INotificationService notificationService, IUserProfileRepository userProfileRepository, IScheduleRepository scheduleRepository)
         {
             _userProfileRepository = userProfileRepository;
             _scheduleRepository = scheduleRepository;
             _notificationService = notificationService;
+            _appointmentService = appointmentService;
         }
 
         public async Task<IEnumerable<UserProfile>> GetAllUserProfilesAsync()
@@ -91,13 +92,17 @@ namespace FiapHackaton.Application
         public async Task<IEnumerable<ScheduleModel>> GetAllDoctorsAsync()
         {
             var doctorList = await _userProfileRepository.GetAllDoctorsAsync();
+            var sc = await _scheduleRepository.GetAllSchedules();
+            var app =  _appointmentService.GetAllAppointments().ToList();
             var scheduleTasks = doctorList.Select(async item => new ScheduleModel
             {
                 UserName = $"{item.FirstName} {item.LastName}",
                 UserId = item.UserId,
                 UserTypeId = item.UserTypeId,
-                Schedules = await _scheduleRepository.GetScheduleByUserId(item.UserId)
-            });
+                Schedules = sc.Where(a => a.DoctorID == item.UserId).ToList(),
+                AppointmentModel = app
+
+            }); ;
 
             var scheduleModels = await Task.WhenAll(scheduleTasks);
             return scheduleModels.ToList();
@@ -114,7 +119,7 @@ namespace FiapHackaton.Application
             obj = await _userProfileRepository.GetByEmail(email);
             if (obj != null)
             {
-                _notificationService.SendPassword(email, $"He {obj.FirstName} Please use the below password to login");
+                _notificationService.SendPassword(email, $"He {obj.FirstName} Please use the below password to login {obj.Password}");
             }
             return obj;
 

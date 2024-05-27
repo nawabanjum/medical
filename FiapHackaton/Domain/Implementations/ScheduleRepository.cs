@@ -40,14 +40,16 @@ namespace FiapHackaton.Domain.Implementations
 			var schedule = await _context.Schedules.FindAsync(scheduleId);
 			if (schedule != null)
 			{
-				_context.Schedules.Remove(schedule);
-				await _context.SaveChangesAsync();
+				//_context.Schedules.Remove(schedule);
+				schedule.Deleted = true;
+                _context.Schedules.Update(schedule);
+                await _context.SaveChangesAsync();
 			}
 		}
 
 		public async Task<List<Schedule>> GetScheduleByUserId(int DoctorId)
 		{
-			return await _context.Schedules.Where(a=>a.DoctorID== DoctorId).ToListAsync();
+			return await _context.Schedules.Where(a=>a.DoctorID== DoctorId && !a.Deleted).ToListAsync();
 		}
 	}
 }

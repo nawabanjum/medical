@@ -6,7 +6,7 @@ namespace FiapHackaton.Application.Interfaces
     {
         IEnumerable<AppointmentModel> GetAllAppointments();
         AppointmentModel GetAppointmentById(int id);
-        void AddAppointment(AppointmentModel appointment);
+        Task  AddAppointmentAsync(AppointmentModel appointment);
         void UpdateAppointment(AppointmentModel appointment);
         void CancelAppointment(int id);
     }

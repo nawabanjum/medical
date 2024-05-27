@@ -6,5 +6,6 @@ namespace FiapHackaton.Application.Interfaces
     {
         void SendAppointmentReminder(AppointmentModel appointment, string email);
         void SendPassword(string to,string message);
+        void SendAppointment(string to,string message);
     }
 }

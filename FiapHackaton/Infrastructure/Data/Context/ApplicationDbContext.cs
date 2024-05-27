@@ -22,16 +22,16 @@ namespace FiapHackaton.Infrastructure.Data.Context
             base.OnModelCreating(modelBuilder);
 
             // Configuração das chaves primárias compostas
-            modelBuilder.Entity<AppointmentModel>()
-                .HasKey(a => new { a.Id, a.PatientId, a.DoctorId });
+            //modelBuilder.Entity<AppointmentModel>()
+            //    .HasKey(a => new { a.Id, a.PatientId, a.DoctorId });
 
-            // Configuração das chaves estrangeiras
-            modelBuilder.Entity<AppointmentModel>();
-                        //.HasOne(a => a.PatientId)
-                        //.WithMany(p => p.Appointments)
-                        // .HasForeignKey(a => a.PatientId);
+            //// Configuração das chaves estrangeiras
+            //modelBuilder.Entity<AppointmentModel>();
+            //            //.HasOne(a => a.PatientId)
+            //            //.WithMany(p => p.Appointments)
+            //            // .HasForeignKey(a => a.PatientId);
 
-            modelBuilder.Entity<AppointmentModel>();
+            //modelBuilder.Entity<AppointmentModel>();
                 //.HasOne(a => a.DoctorId)
                 //.WithMany(d => d.Appointments)
                 //.HasForeignKey(a => a.DoctorId);

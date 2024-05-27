@@ -5,8 +5,6 @@ VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapHackaton", "FiapHackaton.csproj", "{24FE15DA-A67F-4F5A-8034-BFEDEF7B8B3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapHackaton.WebUI", "..\FiapHackaton.WebUI\FiapHackaton.WebUI.csproj", "{C3DBF048-BB6B-47CE-BD94-206D47186523}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FiapHackaton.WebApp", "..\FiapHackaton.WebApp\FiapHackaton.WebApp.csproj", "{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}"
 EndProject
 Global
@@ -19,10 +17,6 @@ Global
 		{24FE15DA-A67F-4F5A-8034-BFEDEF7B8B3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24FE15DA-A67F-4F5A-8034-BFEDEF7B8B3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24FE15DA-A67F-4F5A-8034-BFEDEF7B8B3E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3DBF048-BB6B-47CE-BD94-206D47186523}.Release|Any CPU.Build.0 = Release|Any CPU
 		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09EEC90C-EBA1-48F4-AC00-B1F1FC35AABE}.Release|Any CPU.ActiveCfg = Release|Any CPU

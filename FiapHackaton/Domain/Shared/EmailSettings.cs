@@ -6,5 +6,6 @@
         public string From { get; set; }
         public string FromName { get; set; }
         public string AdminEmail { get; set; }
+        public string SendGridKey { get; set; }
     }
 }

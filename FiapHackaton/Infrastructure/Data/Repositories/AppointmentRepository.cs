@@ -20,7 +20,7 @@ namespace FiapHackaton.Infrastructure.Data.Repositories
 
         public AppointmentModel GetAppointmentById(int id)
         {
-            return _context.Appointments.FirstOrDefault(a => a.Id == id);
+            return _context.Appointments.FirstOrDefault(a => a.AppointmentID == id);
         }
 
         public void AddAppointment(AppointmentModel appointment)
