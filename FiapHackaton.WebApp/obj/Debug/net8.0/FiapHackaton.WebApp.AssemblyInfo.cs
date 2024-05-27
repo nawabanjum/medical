@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FiapHackaton.WebApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0a9ac56203de64a76c6a92a91be271708d0a0bba")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4318415c1d48aeebc55d8abedb045e3f9f7c6ca4")]
 [assembly: System.Reflection.AssemblyProductAttribute("FiapHackaton.WebApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FiapHackaton.WebApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
