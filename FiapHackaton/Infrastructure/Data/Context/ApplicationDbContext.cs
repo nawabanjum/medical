@@ -32,9 +32,9 @@ namespace FiapHackaton.Infrastructure.Data.Context
             //            // .HasForeignKey(a => a.PatientId);
 
             //modelBuilder.Entity<AppointmentModel>();
-                //.HasOne(a => a.DoctorId)
-                //.WithMany(d => d.Appointments)
-                //.HasForeignKey(a => a.DoctorId);
+            //.HasOne(a => a.DoctorId)
+            //.WithMany(d => d.Appointments)
+            //.HasForeignKey(a => a.DoctorId);
         }
     }
 }

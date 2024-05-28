@@ -66,9 +66,20 @@
 }
 @code {
     private List<ScheduleModel> doctors = new List<ScheduleModel>();
-
+    private int userID = 0;
     protected override async Task OnInitializedAsync()
     {
+        var Id = await _localStorage.GetItemAsync("UserId");
+        if (!string.IsNullOrEmpty(Id))
+        {
+            userID = Convert.ToInt32(Id);
+        }
+       
+        if (userID <= 0)
+        {
+            _navMan.NavigateTo("/"); // Redirect to the schedules page
+            return;
+        }
         var clientlocal = ClientFactory.CreateClient("LocalApi");
         var response = await clientlocal.GetAsync("api/UserProfile/doctors");
         if (response.IsSuccessStatusCode)
@@ -80,8 +91,13 @@
     private async Task BookAppointment(int id,int docid)
     {
         var clientlocal = ClientFactory.CreateClient("LocalApi");
-        var value = await _localStorage.GetItemAsync("UserId");
-        var userID = Convert.ToInt32(value);
+        var Id = await _localStorage.GetItemAsync("UserId");
+        if (string.IsNullOrEmpty(Id))
+        {
+            userID = Convert.ToInt32(Id);
+        }
+         userID = Convert.ToInt32(Id);
+
         AppointmentModel appointmentModel = new AppointmentModel
         {
               Comments="Please book my appointment",

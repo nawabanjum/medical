@@ -1,0 +1,11 @@
+﻿@page "/logout"
+@using FiapHackaton.WebApp.Services
+@inject NavigationManager _navMan
+@inject LocalStorageService _localStorage
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await _localStorage.ClearAsync();
+        _navMan.NavigateTo("/");
+    }
+}

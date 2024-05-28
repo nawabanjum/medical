@@ -80,8 +80,17 @@
     private int UserTypeId = 2;
     protected override async Task OnInitializedAsync()
     {
-        var value = await _localStorage.GetItemAsync("UserId");
-        UserId = Convert.ToInt32(value);
+        var Id = await _localStorage.GetItemAsync("UserId");
+        if (!string.IsNullOrEmpty(Id))
+        {
+            UserId = Convert.ToInt32(Id);
+        }
+        
+        if (UserId <= 0)
+        {
+            _navMan.NavigateTo("/"); // Redirect to the schedules page
+            return;
+        }
         var value1 = await _localStorage.GetItemAsync("UserTypeId");
         UserTypeId = Convert.ToInt32(value1);
         var clientlocal = ClientFactory.CreateClient("LocalApi");

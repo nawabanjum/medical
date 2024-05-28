@@ -83,7 +83,6 @@ namespace FiapHackaton.Web.Controllers
             try
             {
 
-
                 if (userProfile.UserId <= 0)
                 {
                     return BadRequest();
@@ -107,9 +106,9 @@ namespace FiapHackaton.Web.Controllers
 
         [HttpPost]
         [Route("forgot-password")]
-        public async Task<ActionResult> ForgotPassword(string username)
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordModel model)
         {
-            var userProfile = await _userProfileService.GetByEmail(username);
+            var userProfile = await _userProfileService.GetByEmail(model.Email);
             if (userProfile == null)
             {
                 return NotFound();

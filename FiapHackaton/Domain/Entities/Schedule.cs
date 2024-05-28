@@ -1,10 +1,15 @@
-﻿namespace FiapHackaton.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FiapHackaton.Domain.Entities
 {
-	public class Schedule
+    [Table("Schedule")]
+    public class Schedule
 	{
-		public int ScheduleID { get; set; }
+        [Key]
+        public int ScheduleID { get; set; }
 		public int DoctorID { get; set; }
-		public string DayOfWeek { get; set; }
+        public string DayOfWeek { get; set; }
 		public string StartTime { get; set; }
 		public string EndTime { get; set; }
 		public string DocComments { get; set; }

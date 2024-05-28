@@ -1,4 +1,7 @@
-﻿namespace FiapHackaton.Domain.Entities
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FiapHackaton.Domain.Entities
 {
     public class Appointment
     {

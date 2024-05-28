@@ -17,5 +17,6 @@ namespace FiapHackaton.Domain.Entities
         public int UserTypeId { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+       
     }
 }
